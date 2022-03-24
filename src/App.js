@@ -1,25 +1,39 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import * as C from './App.style'
+import StoreImg from './assets/store.png'
+import OrderImg from './assets/order.png'
+import ProfileImg from './assets/profile.png'
 
 import HomeScreen from './pages/HomeScreen';
-import Tela2Screen from './pages/Tela2Screen';
+import { MenuItem } from './components/MenuItem';
+import PrivateRoute from './components/PrivateRoute';
+import { Cart } from './components/Cart';
 
 export default () => {
-    const name = useSelector(state => state.user.name);
-
     return (
         <BrowserRouter>
-            <h1>Oi, {name}</h1>
-
-            <Switch>
-                <Route exact path="/">
-                    <HomeScreen />
-                </Route>
-                <Route path="/tela2/:nome">
-                    <Tela2Screen />
-                </Route>
-            </Switch>
+            <C.Container>
+                <C.Menu>
+                    <MenuItem icon={StoreImg} link='/' />
+                    <MenuItem icon={OrderImg} link='/orders' />
+                    <MenuItem icon={ProfileImg} link='/profile' />
+                </C.Menu>
+                <C.PageBody>
+                    <Switch>
+                        <Route exact path="/">
+                            <HomeScreen />
+                        </Route>
+                        <PrivateRoute path="/orders">
+                            <h1>order</h1>
+                        </PrivateRoute>
+                        <PrivateRoute path="/profile">
+                            <h1>profile</h1>
+                        </PrivateRoute>
+                    </Switch>
+                </C.PageBody>
+                <Cart />
+            </C.Container>
         </BrowserRouter>
     );
 }
