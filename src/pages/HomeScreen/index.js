@@ -8,6 +8,7 @@ import ReactTooltip from 'react-tooltip';
 import { ProductItem } from '../../components/ProductItem';
 import { Modal } from '../../components/Modal';
 import { ModalProduct } from '../../components/ModalProduct';
+import { Cart } from '../../components/Cart';
 
 
 let searchTimer = null
@@ -19,6 +20,7 @@ export default () => {
 
     const [activeModal, setActiveModal] = useState(false)
     const [modalData, setModalData] = useState({})
+    const [reduxBugado, setReduxBugado] = useState([])
 
     const [activeCat, setActiveCat] = useState('0')
     const [activePage, setActivePage] = useState(1)
@@ -104,8 +106,9 @@ export default () => {
                 </C.PaginationArea>
             }
             <Modal status={activeModal} setStatus={setActiveModal}>
-                <ModalProduct data={modalData} setStatus={setActiveModal} />
+                <ModalProduct data={modalData} setStatus={setActiveModal} reduxBugado={reduxBugado} setReduxBugado={setReduxBugado} />
             </Modal>
+            <Cart data={reduxBugado} />
         </C.Container>
     );
 }

@@ -9,7 +9,6 @@ import ReactTooltip from 'react-tooltip'
 import HomeScreen from './pages/HomeScreen';
 import { MenuItem } from './components/MenuItem';
 import PrivateRoute from './components/PrivateRoute';
-import { Cart } from './components/Cart';
 
 export default () => {
     return (
@@ -33,7 +32,6 @@ export default () => {
                         </PrivateRoute>
                     </Switch>
                 </C.PageBody>
-                <Cart />
             </C.Container>
             <ReactTooltip id='tip-top' place='top' effect='solid' />
             <ReactTooltip id='tip-right' place='right' effect='solid' />

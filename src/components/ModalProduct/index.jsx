@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
 import * as C from './style'
 
-export const ModalProduct = ({ data, setStatus }) => {
-    const dispatch = useDispatch()
+export const ModalProduct = ({ data, setStatus, reduxBugado, setReduxBugado }) => {
     const [orderCount, setOrderCount] = useState(1)
 
     useEffect(() => {
@@ -21,10 +19,13 @@ export const ModalProduct = ({ data, setStatus }) => {
     }
 
     const handleAddCart = () => {
-        dispatch({
-            type: 'ADD_PRODUCT',
-            payload: { data, orderCount }
-        })
+        let quantia = {
+            quantia: orderCount
+        }
+        const dataQt = Object.assign(data, quantia)
+        const odeioRedux = [...reduxBugado]
+        odeioRedux.push(dataQt)
+        setReduxBugado(odeioRedux)
         setStatus(false)
     }
 
