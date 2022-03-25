@@ -4,6 +4,7 @@ import * as C from './App.style'
 import StoreImg from './assets/store.png'
 import OrderImg from './assets/order.png'
 import ProfileImg from './assets/profile.png'
+import ReactTooltip from 'react-tooltip'
 
 import HomeScreen from './pages/HomeScreen';
 import { MenuItem } from './components/MenuItem';
@@ -15,9 +16,9 @@ export default () => {
         <BrowserRouter>
             <C.Container>
                 <C.Menu>
-                    <MenuItem icon={StoreImg} link='/' />
-                    <MenuItem icon={OrderImg} link='/orders' />
-                    <MenuItem icon={ProfileImg} link='/profile' />
+                    <MenuItem title='Loja' icon={StoreImg} link='/' />
+                    <MenuItem title='Pedidos' icon={OrderImg} link='/orders' />
+                    <MenuItem title='Perfil' icon={ProfileImg} link='/profile' />
                 </C.Menu>
                 <C.PageBody>
                     <Switch>
@@ -34,6 +35,8 @@ export default () => {
                 </C.PageBody>
                 <Cart />
             </C.Container>
+            <ReactTooltip id='tip-top' place='top' effect='solid' />
+            <ReactTooltip id='tip-right' place='right' effect='solid' />
         </BrowserRouter>
     );
 }

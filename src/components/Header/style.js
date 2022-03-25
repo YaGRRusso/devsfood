@@ -20,7 +20,7 @@ export const Container = styled.div`
         border: 0;
         border-radius: 25px;
         transition: all .25s;
-        width: ${props => props.active ? '300px' : '0'};
+        width: ${props => props.active ? '250px' : '0'};
         height: 50px;
         background-color: #fff;
         outline: none;

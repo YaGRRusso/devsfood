@@ -7,7 +7,7 @@ export const Cart = ({ icon, link }) => {
         <C.CartArea>
             <C.CartHeader>
                 <img src={CartIcon} alt="carrinho" />
-                <span>Meu Carrinho (x)</span>
+                <span>Meu Carrinho (0)</span>
             </C.CartHeader>
             <C.CartBody>
 
