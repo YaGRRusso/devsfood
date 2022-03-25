@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { ThemeVariables as Theme } from '../../ThemeVariables'
 
 export const Container = styled.div`
     display: ${props => props.active ? 'flex' : 'none'};
@@ -15,11 +14,11 @@ export const Container = styled.div`
 `
 
 export const Modal = styled.div`
-    width: 500px;
-    height: 300px;
+    min-width: 60vw;
+    max-width: 90vw;
+    max-height: 80vh;
     background-color: #fff;
     border-radius: 20px;
-    color: ${Theme.secondaryColor};
     box-shadow: 0 0 50px #00000099;
     z-index: 100;
 `

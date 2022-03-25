@@ -2,9 +2,9 @@ import React from "react"
 import * as C from './style'
 import ChevronImg from '../../assets/next.png'
 
-export const ProductItem = ({ data }) => {
+export const ProductItem = ({ data, onClick }) => {
     return (
-        <C.Container>
+        <C.Container onClick={() => { onClick(data) }}>
             <C.PhotoArea>
                 <img src={data.image} alt={data.name} />
             </C.PhotoArea>

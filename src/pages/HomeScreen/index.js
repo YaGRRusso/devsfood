@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from "react-router-dom";
 import { Header } from '../../components/Header';
 import * as C from './style';
 import api from '../../api'
@@ -8,17 +7,19 @@ import AllCatImg from '../../assets/food-and-restaurant.png'
 import ReactTooltip from 'react-tooltip';
 import { ProductItem } from '../../components/ProductItem';
 import { Modal } from '../../components/Modal';
+import { ModalProduct } from '../../components/ModalProduct';
 
 
 let searchTimer = null
 export default () => {
-    // const history = useHistory();
     const [searchInput, setSearchInput] = useState('')
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
     const [totalPages, setTotalPages] = useState(0)
 
-    const [activeModal, setActiveModal] = useState(true)
+    const [activeModal, setActiveModal] = useState(false)
+    const [modalData, setModalData] = useState({})
+
     const [activeCat, setActiveCat] = useState('0')
     const [activePage, setActivePage] = useState(1)
     const [activeSearch, setActiveSearch] = useState('')
@@ -53,6 +54,11 @@ export default () => {
         getProducts()
     }, [activeCat, activePage, activeSearch])
 
+    const handleProductClick = (data) => {
+        setModalData(data)
+        setActiveModal(true)
+    }
+
     return (
         <C.Container>
             <Header search={searchInput} onSearch={setSearchInput} img={AllCatImg} />
@@ -79,7 +85,7 @@ export default () => {
                         <ProductItem
                             key={index}
                             data={item}
-                            onClick={() => { alert('oi') }}
+                            onClick={handleProductClick}
                         />
                     ))}
                 </C.ProductArea>
@@ -91,14 +97,15 @@ export default () => {
                             key={index}
                             active={activePage}
                             current={index + 1}
-                            onClick={() => { setActivePage(index + 1) }}
                         >
                             {index + 1}
                         </C.PaginationItem>
                     ))}
                 </C.PaginationArea>
             }
-            <Modal status={activeModal} setStatus={setActiveModal} />
+            <Modal status={activeModal} setStatus={setActiveModal}>
+                <ModalProduct data={modalData} setStatus={setActiveModal} />
+            </Modal>
         </C.Container>
     );
 }
